@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Select Story{% endblock %}
+
+{% block content %}
+<h1>Mad Libs</h1>
+<p>Choose a story number</p>
+<form action="/form" method="POST">
+    <input type="number", min="0", max="5", name="story_number">
+    <button>Submit</button>
+</form>
+{% endblock %}
