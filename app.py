@@ -1,16 +1,25 @@
-from flask import Flask, request, render_template
-from stories import story
+from flask import Flask, request, render_template, redirect
+from stories import Story
 
 app = Flask(__name__)
+app.config['TESTING'] = True
 
+
+if __name__ == '__main__':
+    app.run
 
 
 
 
 @app.route('/')
-def form():
-    prompts = story.prompts
-    return render_template('form.html', prompts=prompts)
+def home():
+    return render_template('/home.html')
+
+@app.route('/form', methods=['POST'])
+def show_form():
+    num = request.form['story_number']
+    return redirect('/form/num')
+
 
 @app.route('/submitted')
 def submitted():
@@ -38,7 +47,3 @@ def submitted():
 
 
 
-
-
-if __name__ == '__main__':
-    app.run
